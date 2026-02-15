@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lakmal Sanjeewa · IT Professional · CV</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter + Space Grotesk -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #dae5ec 0%, #e9f0f5 100%);
+            font-family: "Inter", sans-serif;
+            padding: 2rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.5;
+            color: #1e293b;
+        }
+
+        .cv-card {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 2.8rem;
+            box-shadow: 0 30px 60px -15px rgba(0,30,50,0.3), 0 0 0 1px rgba(255,255,255,0.6) inset;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: floatIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes floatIn {
+            0% { opacity: 0; transform: translateY(40px) scale(0.96); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .cv-grid {
+            display: grid;
+            grid-template-columns: 1fr 2.2fr;
+            gap: 0;
+        }
+
+        /* ---------- LEFT PANEL (navy fresh) ---------- */
+        .left-panel {
+            background: rgba(248, 250, 252, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 2rem 1.8rem;
+            border-right: 1px solid rgba(0,55,100,0.08);
+            animation: slideLeft 0.8s ease-out;
+        }
+
+        @keyframes slideLeft {
+            0% { opacity: 0; transform: translateX(-30px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Profile image area */
+        .profile-pic-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.8rem;
+        }
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 15px 30px -10px rgba(21, 66, 105, 0.3);
+            background: #e2eaf2;
+            transition: transform 0.3s ease, box-shadow 0.3s;
+        }
+        .profile-pic:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 35px -8px #1f4e7a;
+        }
+        /* if image is missing, show initials as fallback (optional) but we keep img */
+        .profile-pic[src=""], .profile-pic:not([src]) {
+            display: none;
+        }
+        .profile-pic-fallback {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #1f4e7a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 500;
+            border: 4px solid white;
+            box-shadow: 0 15px 30px -10px #0f2b3d;
+        }
+
+        .name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            background: linear-gradient(165deg, #0a2a44, #1f4e7a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #15507b;
+            background: rgba(27, 88, 138, 0.1);
+            display: inline-block;
+            padding: 0.25rem 1.2rem;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(27,88,138,0.2);
+            margin-top: 0.5rem;
+        }
+
+        .contact-info {
+            margin: 1.8rem 0 2rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+            color: #1e3b5c;
+            transition: transform 0.2s;
+            word-break: break-word;
+        }
+
+        .contact-item i {
+            width: 24px;
+            color: #1f4e7a;
+            font-size: 1.2rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin: 2rem 0 1.2rem 0;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 48px;
+            height: 3px;
+            background: linear-gradient(90deg, #1f4e7a, #9ab9d4);
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+
+        /* expertise pills */
+        .expertise-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.6rem;
+            list-style: none;
+            margin-bottom: 1.8rem;
+        }
+        .expertise-list li {
+            background: rgba(31,78,122,0.06);
+            border: 1px solid rgba(31,78,122,0.2);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #153e60;
+            backdrop-filter: blur(2px);
+            transition: 0.15s;
+        }
+        .expertise-list li:hover {
+            background: #1f4e7a;
+            color: white;
+            border-color: #1f4e7a;
+            transform: translateY(-2px);
+        }
+
+        .personal-details {
+            background: rgba(255,255,255,0.6);
+            border-radius: 28px;
+            padding: 1.4rem 1.2rem;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(255,255,255,0.8);
+            backdrop-filter: blur(4px);
+        }
+        .personal-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed rgba(0,0,0,0.05);
+        }
+        .personal-label { font-weight: 600; color: #1f4e7a; }
+        .personal-value { font-weight: 400; color: #253746; }
+
+        .edu-item {
+            margin-bottom: 1rem;
+        }
+        .edu-item strong {
+            font-weight: 600;
+            color: #0f2b3d;
+            display: block;
+            font-size: 0.95rem;
+        }
+        .edu-item span {
+            font-size: 0.85rem;
+            color: #4a627a;
+        }
+        .cert-badge {
+            background: white;
+            border-radius: 40px;
+            padding: 0.3rem 1.1rem;
+            margin: 0.3rem 0;
+            border-left: 4px solid #1f4e7a;
+            font-size: 0.85rem;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: 0.2s;
+        }
+
+        /* ---------- RIGHT PANEL ---------- */
+        .right-panel {
+            background: white;
+            padding: 2rem 2.2rem 2rem 2.2rem;
+            animation: slideRight 0.8s ease-out;
+        }
+
+        @keyframes slideRight {
+            0% { opacity: 0; transform: translateX(30px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .summary {
+            background: #f5faff;
+            padding: 1.5rem 1.8rem;
+            border-radius: 32px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(31,78,122,0.15);
+            font-size: 0.96rem;
+            color: #1a3f5c;
+            box-shadow: 0 4px 10px -8px #1f4e7a20;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 28px;
+        }
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #1f4e7a;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px rgba(31,78,122,0.3);
+        }
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 26px;
+            width: 2px;
+            height: calc(100% - 18px);
+            background: linear-gradient(#b3ccdd, transparent);
+        }
+        .timeline-item:last-child:after { display: none; }
+
+        .timeline-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-role {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #0f2b3d;
+        }
+        .timeline-company {
+            font-weight: 500;
+            color: #1f4e7a;
+            font-size: 0.95rem;
+            margin-left: 0.25rem;
+        }
+        .timeline-date {
+            font-size: 0.8rem;
+            background: #e7f0f9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-weight: 500;
+            color: #1b4a6b;
+            white-space: nowrap;
+        }
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: #2a4055;
+            margin-top: 0.3rem;
+            padding-right: 0.5rem;
+            list-style-type: disc;
+            list-style-position: inside;
+        }
+        .timeline-desc li {
+            margin-bottom: 0.25rem;
+        }
+
+        .microsoft-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: 0.5rem 0 1.5rem;
+        }
+        .skill-chip-small {
+            background: #e9f1f9;
+            border-radius: 20px;
+            padding: 0.2rem 1rem;
+            font-size: 0.8rem;
+            border: 1px solid rgba(31,78,122,0.2);
+        }
+
+        .declaration-box {
+            margin-top: 2.5rem;
+            padding-top: 1.2rem;
+            border-top: 1px dashed #b9cfE4;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #1b3a54;
+            gap: 1rem;
+        }
+        .signature-area {
+            text-align: right;
+            min-width: 200px;
+        }
+        .signature-line {
+            width: 180px;
+            border-bottom: 2px solid #1f4e7a;
+            margin-top: 8px;
+            margin-left: auto;
+        }
+
+        @media (max-width: 900px) {
+            .cv-grid { grid-template-columns: 1fr; }
+            .left-panel { border-right: none; border-bottom: 1px solid #cddae6; }
+        }
+
+        /* extra polish */
+        .hover-lift:hover { transform: translateY(-2px); }
+        .fa-ul { margin-left: 1.7rem; }
+    </style>
+</head>
+<body>
+    <div class="cv-card">
+        <div class="cv-grid">
+            <!-- LEFT PANEL (full personal, education, expertise) -->
+            <div class="left-panel">
+                <!-- PROFILE IMAGE: replace "your-image.jpg" with actual path -->
+                <div class="profile-pic-container">
+                    <img class="profile-pic"src="images/lakmal.jpg" alt="Lakmal Sanjeewa" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="profile-pic-fallback" style="display: none;">LS</div>
+                </div>
+
+                <h1 class="name">LAKMAL<br>SANJEEWA</h1>
+                <div class="subhead">Assistant Manager (IT) · IT Executive</div>
+
+                <div class="contact-info">
+                    <div class="contact-item"><i class="fas fa-map-pin"></i> Kebella Gaha Hena, Bandaththara, Thihagoda, Matara</div>
+                    <div class="contact-item"><i class="fas fa-phone-alt"></i> +94 76 3 518 808 | +94 76 129 2930</div>
+                    <div class="contact-item"><i class="fas fa-envelope"></i> sanjeewajayawickrama@outlook.com</div>
+                    <div class="contact-item"><i class="fab fa-linkedin"></i> lk.linkedin.com/in/lakmalsanjeewa</div>
+                </div>
+
+                <!-- Highlights of Expertise (exactly from PDF) -->
+                <div class="section-title">HIGHLIGHTS OF EXPERTISE</div>
+                <ul class="expertise-list">
+                    <li>Active Directory System Administration</li><li>Advanced IT Support & System Administration</li>
+                    <li>Advanced Troubleshooting</li><li>Attendance & Door Access Solutions</li>
+                    <li>Automated Technical Support for Analyzers & LIS Systems</li><li>Managing Complex IT Projects</li>
+                    <li>Network Architecture & Strategic IT Planning</li><li>Organizational Capacity & Operability</li>
+                    <li>Staff Motivation & Relationship Management</li><li>C# Windows Application Development</li>
+                </ul>
+
+                <!-- Personal Information (exactly from PDF) -->
+                <div class="section-title">PERSONAL INFO</div>
+                <div class="personal-details">
+                    <div class="personal-row"><span class="personal-label">Date of Birth</span><span class="personal-value">1985-10-29</span></div>
+                    <div class="personal-row"><span class="personal-label">Nationality</span><span class="personal-value">Sri Lankan</span></div>
+                    <div class="personal-row"><span class="personal-label">NIC</span><span class="personal-value">19853031666</span></div>
+                    <div class="personal-row"><span class="personal-label">Sex</span><span class="personal-value">Male</span></div>
+                    <div class="personal-row"><span class="personal-label">Marital Status</span><span class="personal-value">Married</span></div>
+                </div>
+
+                <!-- Education (full list from PDF) -->
+                <div class="section-title">EDUCATION</div>
+                <div class="edu-item"><strong>Diploma in Cyber Psychology</strong> <span>UK</span></div>
+                <div class="edu-item"><strong>Diploma in Network Administration with Security</strong> <span>VTC Dehiwala</span></div>
+                <div class="edu-item"><strong>Windows Network Administration</strong> <span>Turnkey IT Campus</span></div>
+                <div class="edu-item"><strong>Diploma in Computer Hardware & Network Engineering</strong> <span>DHNE, UK</span></div>
+                <div class="edu-item"><strong>Diploma in Computer Hardware & Network Engineering</strong> <span>London Business School</span></div>
+                <div class="edu-item"><strong>Certificate in IT Technician</strong> <span>YIA international academy</span></div>
+                <div class="edu-item"><strong>Computer Fundamentals and Internet Communication</strong> <span>SLBFE & Microsoft</span></div>
+                <div class="edu-item"><strong>CERTIFICATE IN EXPORT - IMPORT MANAGEMENT</strong></div>
+                <div class="edu-item"><strong>Diploma in Law</strong></div>
+                <div class="edu-item"><strong>Fortinet certificate</strong></div>
+                <div class="edu-item"><strong>Diploma in Business Management</strong></div>
+                <div class="edu-item"><strong>Electronic & Electrical VTC</strong> <span>Thalalla</span></div>
+                <div class="edu-item"><strong>Following BSC computer Science</strong></div>
+
+                <div class="section-title" style="margin-top:1.5rem;">G.C.E. EXAMINATIONS</div>
+                <div class="edu-item"><strong>G.C.E. (O/L)</strong></div>
+                <div class="edu-item"><strong>G.C.E. (A/L) Art Subject</strong></div>
+            </div>
+
+            <!-- RIGHT PANEL (profile, full experience, declaration) -->
+            <div class="right-panel">
+                <!-- Profile summary (exact words) -->
+                <div class="summary">
+                    <i class="fas fa-quote-left" style="color:#1f4e7a; opacity:0.5; margin-right:6px;"></i>
+                    A dedicated IT professional with a dynamic career spanning IT support, system administration, and IT management. Currently serving as an Assistant Manager in IT, my expertise lies in improving operational effectiveness and system performance. I possess extensive experience as an IT executive, where I have honed my skills in network architecture, advanced troubleshooting, and strategic IT planning. Known for my analytical skills and innovative problem-solving abilities, I excel at managing complex IT projects and advancing technology initiatives. As a committed leader, I focus on fostering collaborative team dynamics and career development within the fast‑paced field of information technology.
+                </div>
+
+                <!-- EXPERIENCE (full details from PDF) -->
+                <div class="section-title">WORK EXPERIENCE</div>
+                <div class="timeline">
+                    <!-- IT Executive Ceylon Tea Group -->
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span><span class="timeline-role">IT Executive</span> <span class="timeline-company">Ceylon Tea Group</span></span>
+                            <span class="timeline-date">Apr 2025 – Currently working</span>
+                        </div>
+                        <ul class="timeline-desc">
+                            <li>Configure & Manage Windows/Linux servers and client PCs. Configure LAN/WLAN, network/local printers, switches, and routers.</li>
+                            <li>Support web/windows applications and endpoint antivirus software.</li>
+                            <li>Liaise with third-party vendors, process quotations, and manage IT service agreements.</li>
+                            <li>Plan IT solutions, support CCTV systems, and engage in IoT programming.</li>
+                            <li>Install and configure SAP systems as required.</li>
+                            <li>Maintain comprehensive IT inventory management and asset tracking.</li>
+                            <li>Provide end-user support through help desk calls and on-site technical assistance at various locations.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Assistant Manager IT Oculus International -->
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span><span class="timeline-role">Assistant Manager IT</span> <span class="timeline-company">Oculus International, Peliaygoda</span></span>
+                            <span class="timeline-date">Apr 2024 – Aug 2025</span>
+                        </div>
+                        <ul class="timeline-desc">
+                            <li>IT Management, Customer Support and Service, Technical Team Leadership</li>
+                            <li>Strategic Planning and Implementation, IT Infrastructure Management</li>
+                            <li>CCTV System & Biometric fingerprint device Management, Problem Solving and Troubleshooting</li>
+                            <li>Software Development, Network and System Administration</li>
+                            <li>PowerShell Scripting & Data Backup Solutions</li>
+                        </ul>
+                    </div>
+
+                    <!-- IT Executive Durdans Hospital & Out Lab Network (full details) -->
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span><span class="timeline-role">IT Executive</span> <span class="timeline-company">Durdans Hospital & Out Lab Network, Colombo 03</span></span>
+                            <span class="timeline-date">Apr 2017 – Mar 2024</span>
+                        </div>
+                        <ul class="timeline-desc">
+                            <li>Directed installation, configuration, and maintenance of hardware, software, networks, and printers.</li>
+                            <li>Supervised the IT hardware team, streamlining task management.</li>
+                            <li>Presented product/service offerings, negotiated contracts.</li>
+                            <li>Collaborated with internal teams, controlled corporate antivirus (CrowdStrike Falcon, ESET).</li>
+                            <li>Provided remote IT support for Durdans Hospital and 140+ Outlabs locations.</li>
+                            <li>Configured and managed WLAN, Office 365 accounts, Active Directory (AD) for user access.</li>
+                            <li>Integrated biometric access control devices, managed IT inventory.</li>
+                            <li>Coordinated new laboratories island‑wide (IT infrastructure).</li>
+                            <li>Technical support for automated analyzers: DDS180, DDS240, Genuri KT6400, ROCHE Cobas E411, AU400, XP100, Lifotronic H9.</li>
+                            <li>Delivered technical support in boardrooms, meeting rooms, conference rooms.</li>
+                            <li>Collaborated with software teams to support LIS systems and ERP platforms.</li>
+                            <li>Troubleshot SQL Server issues, managed Outlab SQL Database servers.</li>
+                            <li>Supported ERP system and IT hardware requests.</li>
+                            <li>Investigated/resolved email signature issues, set up email logins and signatures.</li>
+                            <li>Utilized PowerShell, C# Windows applications, batch scripts for complex issue resolution.</li>
+                        </ul>
+                    </div>
+
+                    <!-- IT Executive SCK Computer Systems -->
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span><span class="timeline-role">IT Executive - IT & Business Support</span> <span class="timeline-company">SCK Computer Systems, Matara & Colombo</span></span>
+                            <span class="timeline-date">Jan 2015 – Mar 2017</span>
+                        </div>
+                        <ul class="timeline-desc">
+                            <li>Conducted hardware/software installations, diagnosed and resolved issues.</li>
+                            <li>Configured and deployed new IT equipment (computers, printers, networking devices).</li>
+                            <li>Coordinated equipment repairs, managed billing and accounts.</li>
+                            <li>Provided sales assistance and exceptional customer service.</li>
+                        </ul>
+                    </div>
+
+                    <!-- IT Executive VSP Computer Solution -->
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span><span class="timeline-role">IT Executive</span> <span class="timeline-company">VSP Computer Solution (Softlogic Southern Dealer), Galle</span></span>
+                            <span class="timeline-date">Mar 2011 – Aug 2012</span>
+                        </div>
+                        <ul class="timeline-desc">
+                            <li>Provided technical support to banks and government sectors (Galle to Ambalantota).</li>
+                            <li>Diagnosed and troubleshot computer issues.</li>
+                            <li>Installed various operating systems: Windows 98, 2000, XP, Vista, Windows Servers.</li>
+                            <li>Managed sales of computer items, personalized customer assistance.</li>
+                        </ul>
+                    </div>
+
+                    <!-- IT Technician DPJ Holdings -->
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span><span class="timeline-role">IT Technician</span> <span class="timeline-company">DPJ Holdings, Colombo</span></span>
+                            <span class="timeline-date">Feb 2009 – Nov 2010</span>
+                        </div>
+                        <ul class="timeline-desc">
+                            <li>Project Management: successfully managed IT project for a government hospital.</li>
+                            <li>Fingerprint Machine Configuration: expertly configured fingerprint machines.</li>
+                            <li>User Registration Systems: handled user registration processes.</li>
+                        </ul>
+                    </div>
+
+                    <!-- IT Technician Asian Computer -->
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span><span class="timeline-role">IT Technician</span> <span class="timeline-company">Asian Computer Pvt. Ltd., Matara</span></span>
+                            <span class="timeline-date">Jan 2007 – Dec 2008</span>
+                        </div>
+                        <ul class="timeline-desc">
+                            <li>Setting up and installing new hardware, software and Operating systems.</li>
+                            <li>Diagnosing and troubleshooting computer and electronic issues.</li>
+                            <li>Provide over-the-phone IT support to end-users.</li>
+                            <li>Laptop Chipset-Level Troubleshooting and Repair.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Microsoft Certifications (exact) -->
+                <div style="margin-top:2rem;">
+                    <span class="section-title">MICROSOFT CERTIFICATIONS</span>
+                    <div class="microsoft-row">
+                        <span class="skill-chip-small"><i class="fab fa-microsoft"></i> Azure Fundamentals (AZ-900)</span>
+                        <span class="skill-chip-small"><i class="fab fa-microsoft"></i> Azure Administrator (AZ-104)</span>
+                        <span class="skill-chip-small"><i class="fab fa-microsoft"></i> Azure Solutions Architect (AZ-305)</span>
+                    </div>
+                </div>
+
+                <!-- Declaration (exact) -->
+                <div class="declaration-box">
+                    <div><i class="fas fa-check-circle" style="color:#1f4e7a; margin-right:8px;"></i> I solemnly declare that the information provided above is true and correct to the best of my knowledge. I will execute my duties to the best of my abilities.</div>
+                    <div class="signature-area">
+                        <div>Date: .......................</div>
+                        <div class="signature-line"></div>
+                        <div style="font-size:0.8rem; margin-top:4px;">Signature</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // if image fails to load, show fallback monogram
+            const img = document.querySelector('.profile-pic');
+            const fallback = document.querySelector('.profile-pic-fallback');
+            if (img) {
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    if (fallback) fallback.style.display = 'flex';
+                };
+                // if image src is empty or placeholder, trigger fallback
+                if (!img.src || img.src.includes('placehold.co')) {
+                    img.style.display = 'none';
+                    if (fallback) fallback.style.display = 'flex';
+                }
+            }
+        })();
+    </script>
+</body>
+</html>
